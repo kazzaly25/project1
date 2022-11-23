@@ -1,0 +1,13 @@
+#one{color:black}
+#two{color:black}
+#three{background-color:red;
+  	color: white;
+ 	padding: 5px 8px;
+  	margin: 30px 50px;
+  	width: 20%}
+body{background-color:blue;
+	padding:250px;
+	padding-left:350px;
+	border-width:200px;
+	}
+
