@@ -1,14 +1,19 @@
 package com.example.student;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 @Entity
 public class Student {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 	private int rollno;
 	private String name;
 	private int phoneno;
 	
-    public Student() {}
+	public Student() {}
 	
 	public Student(String name, int phoneno) {
 		this.setName(name);
@@ -20,8 +25,6 @@ public class Student {
 		this.setName(name);
 		this.setPhoneno(phoneno);
 	}
-	
-	
 	
 	public int getRollno() {
 		return rollno;
@@ -46,7 +49,6 @@ public class Student {
 	public void setPhoneno(int phoneno) {
 		this.phoneno = phoneno;
 	}
-
 	
 	@Override
 	public String toString() {
