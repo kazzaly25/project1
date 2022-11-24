@@ -1,12 +1,10 @@
 package com.example.student;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 @RestController
-public class StudentController {
+public class StudentsController {
 	@GetMapping("/")
 	public ModelAndView login()
 	{
@@ -17,6 +15,5 @@ public class StudentController {
 	{
 		return (new ModelAndView("register.html"));
 	}
-	
-}
 
+}
