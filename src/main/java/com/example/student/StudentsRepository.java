@@ -5,15 +5,14 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-public class StudentsRepository {
 	@Repository
-	public interface studentRepository extends JpaRepository<Students, Integer>   {
+	public interface StudentsRepository extends JpaRepository<Students, Integer>   {
 		
-		List<Students> findByROllnoContainingOrNmaeContaining(int number, String Text);
+		//List<Students> findByROllnoContainingOrNmaeContaining(int number, String Text);
 		
 	}
 
 	
 
 
-}
+

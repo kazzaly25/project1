@@ -11,10 +11,10 @@
 </script>
 <script src="table.js">
 </script>
-<script src="../js/register.js">
+<script src="register.js">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
 <p>STUDENTS REGISTER</P>
@@ -46,11 +46,30 @@
         </tr>
     </tbody>
 </table>
+<script>
+function save()
+{
+$.ajax({async:true,
+	url:"/saverecord",
+	type:"POST",
+	data:{'rollno':$("#roll").val(),
+		'name':$("name").val(),
+		'phoneno':$("name").val()},
+	success:function(msg)
+	{
+	alert(msg);
+	$("#one").html(msg);
+	},
+	//$("#one").html(msg);
+	error:function(m)
+	{
+	}
+	})
+	}
+	</script>
 
 <!--  <input type =submit value=add student>-->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Student</button>
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -62,21 +81,21 @@
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Roll no</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="roll">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Name</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="name1"></textarea>
           </div>
 	<div class="mb-3">
             <label for="message-text" class="col-form-label">Phone no</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="phoneno"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" onclick=save()>Save</button>
       </div>
     </div>
   </div>
