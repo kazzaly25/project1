@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+<html xmlns:th="https://thymeleaf.org">   
 <script src="jquery.min.js">
 </script>
 <script src="jquery1.min.js">
@@ -32,47 +33,70 @@
     <tbody>
         <tr>
             <td>1</td>
-            <td id="one">kazzaly</td>
+            <td >kazzaly</td>
 		<td>35252352</td>
-		<td></td>
-<td></td>
+		<td><i class="fa fa-pencil-square" aria-hidden="true" onclick=edit()></i></td>
+<td><i class="fa fa-trash-o" aria-hidden="true" onclick=del()></i></td>
         </tr>
         <tr>
             <td>2</td>
             <td>viswa</td>
 		<td>4325353</td>
-<td></td>
-<td></td>
+<td><i class="fa fa-pencil-square" aria-hidden="true" onclick=edit()></i></td>
+<td><i class="fa fa-trash-o" aria-hidden="true" onclick=del()></i></td>
         </tr>
+        <tr th:each="record: ${c}">
+    <td th:text="${record.rollno}" />
+    <td th:text="${record.name}" />
+    <td th:text="${record.phoneno}" />
+    <td><i class="fa fa-pencil-square" aria-hidden="true" onclick=edit()></i></td>
+<td><i class="fa fa-trash-o" aria-hidden="true" onclick=del()></i></td>
+</tr>
+        
     </tbody>
 </table>
 <script>
 function save()
 {
+b={'rollno':$("#roll").val(),
+		'name':$("#name1").val(),
+		'phoneno':$("#phoneno").val()}
 $.ajax({async:true,
 	url:"/saverecord",
 	type:"POST",
 	data:{'rollno':$("#roll").val(),
-		'name':$("name").val(),
-		'phoneno':$("name").val()},
-	success:function(msg)
+		'name':$("#name1").val(),
+		'phoneno':$("#phoneno").val()},
+	success:function(b)
 	{
-	alert(msg);
-	$("#one").html(msg);
+		$("#dialog1").hide();
+		k.row.add([b["rollno"],b["name"],b["phoneno"],"<button><i class='fa fa-pencil-square' aria-hidden='true'></i>,</button>","<button><i class='fa fa-trash-o'aria-hidden='true'></i></button>"]).draw(false);
+		//alert(msg);
 	},
-	//$("#one").html(msg);
 	error:function(m)
 	{
 	}
 	})
 	}
+	function show()
+	{
+		$("#dialog1").show();
+	}
+	function edit()
+	{
+		alert("hi");
+	}
+	function del()
+	{
+		prompt("enter the number");
+	}
 	</script>
 
-<!--  <input type =submit value=add student>-->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Student</button>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" onclick=show()>Add Student</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" id="dialog1">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -81,21 +105,21 @@ $.ajax({async:true,
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Roll no</label>
-            <input type="text" class="form-control" id="roll">
+            <input type="text" class="form-control" id="roll" name=rollno>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Name</label>
-            <textarea class="form-control" id="name1"></textarea>
+            <input type="text" class="form-control" id="name1" name=name>
           </div>
 	<div class="mb-3">
             <label for="message-text" class="col-form-label">Phone no</label>
-            <textarea class="form-control" id="phoneno"></textarea>
+            <input type="text" class="form-control" id="phoneno" name=phoneno>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick=save()>Save</button>
+        <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value=close>
+        <input type="button" class="btn btn-primary" onclick=save() value=save>
       </div>
     </div>
   </div>

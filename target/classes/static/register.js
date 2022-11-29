@@ -1,4 +1,4 @@
 $(document).ready( function () {
-    $('#myTable').DataTable();
+   k= $('#myTable').DataTable();
 } );
 

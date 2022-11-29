@@ -1,5 +1,6 @@
 package com.example.student;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +25,29 @@ public class StudentsController {
 	{
 		String user=request.getParameter("user");
 		String pass=request.getParameter("pass");
+		ModelAndView m=new ModelAndView("register.html");
+		List<Students> s=studentsRepository.findAll();
+		m.addObject("c",s);
+		
 		if (user.equals(pass)) {
-		return (new ModelAndView("register.html"));
+		return m;
 	}
 		else {
 			return(new ModelAndView("login.html"));
 		}
 	}
 
-	@PostMapping("/students/save")
+	@PostMapping("/saverecord")
 	 
 	public Students create(WebRequest request) {
-		
 		String rollno=request.getParameter("rollno");
 		String name=request.getParameter("name");
 		String phoneno=request.getParameter("phoneno");
 		int rollno2=Integer.parseInt(rollno);
 		int phoneno1=Integer.parseInt(phoneno);
-		return studentsRepository.save(new Students(rollno2,name,phoneno1));
-}
+		Students b=studentsRepository.save(new Students(rollno2,name,phoneno1));
+        return b;
+	}	
 }
 	/*@PostMapping("/students/edit")
 	 
