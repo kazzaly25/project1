@@ -1,12 +1,11 @@
 package com.example.student;
 
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,21 +48,21 @@ public class StudentsController {
         return b;
 	}	
 }
-	/*@PostMapping("/students/edit")
+	/*@PostMapping("/editrecord")
 	 
-	//public Students edit(WebRequest request) {
+	/*public Students edit(WebRequest request) {
 		
-		String rollno=request.getParameter("rollno");
+		/*String rollno=request.getParameter("rollno");
 		String name=request.getParameter("name");
 		String phoneno=request.getParameter("phoneno");
 		int rollno2=Integer.parseInt(rollno);
 		int phoneno1=Integer.parseInt(phoneno);
-		//return studentsRepository.(new Students(rollno2,name,phoneno1));
-}
-	//@PostMapping("/students/delete")
-	 
-	//public Students delete(WebRequest request) {
-		
-		
-}	
+		Students b=studentsRepository.save(new Students(rollno2,name,phoneno1));
+		return b;
 }*/
+
+	
+		
+		
+
+

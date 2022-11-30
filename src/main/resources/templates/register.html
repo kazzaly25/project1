@@ -49,7 +49,7 @@
     <td th:text="${record.rollno}" />
     <td th:text="${record.name}" />
     <td th:text="${record.phoneno}" />
-    <td><i class="fa fa-pencil-square" aria-hidden="true" onclick=edit()></i></td>
+    <td><i class="fa fa-pencil-square" aria-hidden="true"  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=edit()></i></td>
 <td><i class="fa fa-trash-o" aria-hidden="true" onclick=del()></i></td>
 </tr>
         
@@ -70,21 +70,31 @@ $.ajax({async:true,
 	success:function(b)
 	{
 		$("#dialog1").hide();
-		k.row.add([b["rollno"],b["name"],b["phoneno"],"<button><i class='fa fa-pencil-square' aria-hidden='true'></i>,</button>","<button><i class='fa fa-trash-o'aria-hidden='true'></i></button>"]).draw(false);
-		//alert(msg);
 	},
 	error:function(m)
 	{
 	}
 	})
 	}
-	function show()
-	{
-		$("#dialog1").show();
-	}
+	
 	function edit()
 	{
-		alert("hi");
+		
+		$.ajax({async:true,
+			url:"/editrecord",
+			type:"POST",
+			data:{'b':$("#roll").val(),
+				'b':$("#name1").val(),
+				'b':$("#phoneno").val()},
+			
+		success:function(b)
+		{
+			
+			},
+		error:function(m)
+		{
+		}
+		})
 	}
 	function del()
 	{
@@ -93,8 +103,8 @@ $.ajax({async:true,
 	</script>
 
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" onclick=show()>Add Student</button>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" >Add Student</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" id="dialog1">
       <div class="modal-header">
