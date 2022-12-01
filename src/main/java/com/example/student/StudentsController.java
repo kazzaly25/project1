@@ -47,20 +47,20 @@ public class StudentsController {
 		Students b=studentsRepository.save(new Students(rollno2,name,phoneno1));
         return b;
 	}	
-}
-	/*@PostMapping("/editrecord")
+
+	@PostMapping("/editrecord")
 	 
-	/*public Students edit(WebRequest request) {
+	public Students edit(WebRequest request) {
 		
-		/*String rollno=request.getParameter("rollno");
+		String rollno=request.getParameter("rollno");
 		String name=request.getParameter("name");
 		String phoneno=request.getParameter("phoneno");
 		int rollno2=Integer.parseInt(rollno);
 		int phoneno1=Integer.parseInt(phoneno);
 		Students b=studentsRepository.save(new Students(rollno2,name,phoneno1));
 		return b;
-}*/
-
+}
+	}
 	
 		
 		

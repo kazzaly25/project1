@@ -45,11 +45,11 @@
 <td><i class="fa fa-pencil-square" aria-hidden="true" onclick=edit()></i></td>
 <td><i class="fa fa-trash-o" aria-hidden="true" onclick=del()></i></td>
         </tr>
-        <tr th:each="record: ${c}">
-    <td th:text="${record.rollno}" />
-    <td th:text="${record.name}" />
-    <td th:text="${record.phoneno}" />
-    <td><i class="fa fa-pencil-square" aria-hidden="true"  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=edit()></i></td>
+        <tr th:each="i: ${c}" >
+    <td th:text="${i.rollno}">
+    <td th:text="${i.name}" >
+    <td th:text="${i.phoneno}">
+    <td><i th:id="${i.rollno}" class="fa fa-pencil-square" aria-hidden="true"  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=edit()></i></td>
 <td><i class="fa fa-trash-o" aria-hidden="true" onclick=del()></i></td>
 </tr>
         
@@ -77,25 +77,25 @@ $.ajax({async:true,
 	})
 	}
 	
-	function edit()
+	function edit(b)
 	{
-		
+	
 		$.ajax({async:true,
 			url:"/editrecord",
 			type:"POST",
-			data:{'b':$("#roll").val(),
-				'b':$("#name1").val(),
-				'b':$("#phoneno").val()},
-			
-		success:function(b)
+			data:{
+				},
+			success:function(b)
 		{
-			
-			},
+			alert("hi");
+		},
 		error:function(m)
 		{
 		}
 		})
+		
 	}
+		
 	function del()
 	{
 		prompt("enter the number");

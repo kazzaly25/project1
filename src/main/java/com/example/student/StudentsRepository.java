@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 	public interface StudentsRepository extends JpaRepository<Students, Integer>   {
 		
 		//List<Students> findByROllnoContainingOrNmaeContaining(int number, String Text);
-		
+		Students = FindById(int num);
 	}
 
 	
